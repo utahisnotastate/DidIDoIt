@@ -6,6 +6,7 @@ import {
   Modal,
   TouchableHighlight,
 } from "react-native";
+import HistoryList from "./HistoryList/HistoryList";
 
 const styles = StyleSheet.create({
   container: {
@@ -13,17 +14,29 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
 });
-
+/*
+The purpose of this component is when the user is in the main app window and 
+press the button to add a new activity, this modal will pop up. This will alllow
+them to either choose an activity they have done before, or create a new one
+*/
 export default function AddHistory() {
   const [modalVisible, setModalVisible] = useState(false);
+
+  const CloseModalButton = () => (
+    <TouchableHighlight onPress={() => setModalVisible(!modalVisible)}>
+      <Text>Close</Text>
+    </TouchableHighlight>
+  );
   return (
     <View style={styles.container}>
       <Modal animationType="slide" visible={modalVisible}>
         <View>
-          <Text>Modal</Text>
-          <TouchableHighlight onPress={() => setModalVisible(!modalVisible)}>
-            <Text>Close</Text>
-          </TouchableHighlight>
+          <View>
+            <CloseModalButton />
+          </View>
+          <View>
+            <HistoryList />
+          </View>
         </View>
       </Modal>
       <View>
