@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import {
   StyleSheet,
   Text,
@@ -15,6 +16,8 @@ const styles = StyleSheet.create({
   },
 });
 /*
+
+THIS SHOULD BE CALLED ACTIVITYLIST
 The purpose of this component is to display all the activities the user has entered into the app. 
 When the user presses the item, it will add it to the history and show up in the activity log. 
 
@@ -39,7 +42,8 @@ const DATA = [
     title: "Took medicine",
   },
 ];
-export default function HistoryList() {
+export default function ActivityList() {
+  const activitylist = useSelector((state) => state.activitylist);
   const ActivityItem = (props: ActivityItem) => (
     <View>
       <Text>{props.title}</Text>
@@ -48,7 +52,7 @@ export default function HistoryList() {
   return (
     <View>
       <FlatList
-        data={DATA}
+        data={activitylist}
         renderItem={({ item }: { item: Emotion }) => (
           <ActivityItem id={item.id} title={item.title} />
         )}
