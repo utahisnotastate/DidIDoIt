@@ -7,6 +7,7 @@ import {
   TouchableHighlight,
 } from "react-native";
 import HistoryList from "./HistoryList/HistoryList";
+import CreateActivity from "./CreateActivity/CreateActivity";
 
 const styles = StyleSheet.create({
   container: {
@@ -36,6 +37,9 @@ export default function AddHistory() {
           </View>
           <View>
             <HistoryList />
+          </View>
+          <View>
+            <CreateActivity />
           </View>
         </View>
       </Modal>
