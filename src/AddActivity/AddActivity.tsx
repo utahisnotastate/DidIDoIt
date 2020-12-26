@@ -4,6 +4,7 @@ import {
   Text,
   View,
   Modal,
+  Alert,
   TouchableHighlight,
 } from "react-native";
 import ActivityList from "./ActivityList/ActivityList";

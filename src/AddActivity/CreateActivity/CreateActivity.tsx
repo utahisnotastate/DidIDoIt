@@ -1,11 +1,13 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import {
   StyleSheet,
   Text,
   View,
   Modal,
   TextInput,
-  TouchableHighlight,
+  TouchableOpacity,
+  Alert,
 } from "react-native";
 
 /*
@@ -22,7 +24,21 @@ const styles = StyleSheet.create({
   },
 });
 export default function CreateActivity() {
-  const [newactivity, setNewActivity] = useState("Test");
+  const dispatch = useDispatch();
+  const [newactivity, setNewActivity] = useState("");
+
+  const createNewActivity = () => {
+    Alert.alert("test");
+  };
+
+  const addNewActivityToList = (activity) => {
+    dispatch({
+      type: "CREATE_NEW_ACTIVITY",
+      item: { id: Date.now().toString(), title: activity },
+    });
+    setNewActivity("");
+  };
+
   return (
     <View style={styles.container}>
       <TextInput
@@ -30,9 +46,18 @@ export default function CreateActivity() {
         style={{ height: 40, borderColor: "gray", borderWidth: 1, flex: 3 }}
         value={newactivity}
       />
-      <TouchableHighlight>
-        <Text>Create and add to log!</Text>
-      </TouchableHighlight>
+      <TouchableOpacity
+        style={{
+          alignItems: "center",
+          backgroundColor: "#DDDDDD",
+          padding: 10,
+          flex: 1,
+          height: "auto",
+        }}
+        onPress={() => addNewActivityToList(newactivity)}
+      >
+        <Text>Create and add to log2!</Text>
+      </TouchableOpacity>
     </View>
   );
 }
