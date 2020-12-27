@@ -1,6 +1,12 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { StyleSheet, Text, View, FlatList } from "react-native";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  TouchableHighlight,
+} from "react-native";
 
 interface HistoryItem {
   id: string;
@@ -21,11 +27,25 @@ const styles = StyleSheet.create({
 
 export default function History() {
   const history = useSelector((state) => state.history);
+  const dispatch = useDispatch();
+
+  const deleteActivityFromHistoryList = (activity) => {
+    dispatch({ type: "DELETE_ACTIVITY_FROM_HISTORY_LIST", id: activity.id });
+  };
 
   const Item = (props: HistoryItem) => (
     <View style={styles.item}>
       <Text>I {props.title} @ 12:30:12s pm X</Text>
       <Text>Add Note</Text>
+      <View>
+        <TouchableHighlight
+          onPress={() => deleteActivityFromHistoryList(props)}
+        >
+          <View>
+            <Text>Delete</Text>
+          </View>
+        </TouchableHighlight>
+      </View>
     </View>
   );
   /* 

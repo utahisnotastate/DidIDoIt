@@ -17,6 +17,9 @@ export function historyReducer(state = initialState, action) {
   switch (action.type) {
     case "ADD_ACTIVITY_TO_HISTORY_LIST":
       return [...state, action.item];
+
+    case "DELETE_ACTIVITY_FROM_HISTORY_LIST":
+      return state.filter((item) => item.id !== action.id);
     default:
       return state;
   }
