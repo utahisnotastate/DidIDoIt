@@ -31,7 +31,7 @@ export default function CreateActivity() {
     Alert.alert("test");
   };
 
-  const addNewActivityToList = (activity) => {
+  const addNewActivityToList = (activity: string) => {
     dispatch({
       type: "CREATE_NEW_ACTIVITY",
       item: { id: Date.now().toString(), title: activity },

@@ -15,7 +15,7 @@ const initialState = [
 
 export function historyReducer(state = initialState, action) {
   switch (action.type) {
-    case "ADD_TO_HISTORY":
+    case "ADD_ACTIVITY_TO_HISTORY_LIST":
       return [...state, action.item];
     default:
       return state;

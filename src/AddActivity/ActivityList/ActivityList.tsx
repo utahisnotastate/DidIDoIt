@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   StyleSheet,
   Text,
@@ -44,9 +44,25 @@ const DATA = [
 ];
 export default function ActivityList() {
   const activitylist = useSelector((state) => state.activitylist);
+  const dispatch = useDispatch();
+
+  const addActivityToHistoryListAndCloseModal = (activity: string) => {
+    dispatch({
+      type: "ADD_ACTIVITY_TO_HISTORY_LIST",
+      item: { id: Date.now().toString(), title: activity },
+    });
+  };
+
   const ActivityItem = (props: ActivityItem) => (
     <View>
-      <Text>{props.title}</Text>
+      <TouchableHighlight
+        onPress={() => addActivityToHistoryListAndCloseModal(props.title)}
+      >
+        <View>
+          <Text>{props.title}</Text>
+          <Text>I just did this!</Text>
+        </View>
+      </TouchableHighlight>
     </View>
   );
   return (
